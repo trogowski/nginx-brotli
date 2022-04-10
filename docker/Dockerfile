@@ -1,6 +1,6 @@
 FROM debian:buster-slim AS brotli-module
 
-ENV NGINX_VERSION 1.21.4
+ENV NGINX_VERSION 1.21.6
 
 # Download and compile brotli modules
 RUN apt-get update \
@@ -14,7 +14,7 @@ RUN apt-get update \
   && ls objs/*.so
 
 # Base image - version must be the same as ENV specified above!
-FROM nginx:1.21.4
+FROM nginx:1.21.6
 
 # Add and configure brotli modules
 COPY --from=brotli-module /nginx-${NGINX_VERSION}/objs/*.so /etc/nginx/modules/
